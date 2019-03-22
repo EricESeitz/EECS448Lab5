@@ -1,15 +1,15 @@
 <html>
 	<head>
-		<title> L5 Ex2: Create User </title>
+		<title> L5 Ex3: Create Post </title>
 	</head>
 
 	<body>
-		<h1>EECS 448 Lab 5 Create User</h1>
-      <form name="myForm" action="CreateUser.php" onsubmit="return validateForm()" method="post">    <!-- post method, different from get -->
+		<h1>EECS 448 Lab 5 Create Post</h1>
+      <form name="myForm" action="CreatePosts.php" onsubmit="return validateForm()" method="post">    <!-- post method, different from get -->
           Enter a username:<br>
           <input id="username" type="text" name="username"><br>
-          Enter a password:<br>
-          <input id="password" type="text" name="password"><br>
+          Enter a Post:<br>
+          <textarea id="post" name="post" style="width:250px;height:150px;" ></textarea>
           <br><br>
       <input type="reset" value="Reset">
       <input type="submit" value="Submit">
@@ -19,17 +19,17 @@
 		function validateForm()
 		{
 			let username = document.getElementById("username").value;
-			let password = document.getElementById("password").value;
+			let post = document.getElementById("post").value;
 
-			if (password == "" || username == "")
+			if (post == "" || username == "")
 			{
 				alert("Error! Please fill out both fields.");
 				return false;
 			}
 
-			if (username == "Username")
+			if (username != "Username")
 			{
-				alert("Error! Username taken.");
+				alert("Error! Not a registered user.");
 				return false;
 			}
 		return true;
