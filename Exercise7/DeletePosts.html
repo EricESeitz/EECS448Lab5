@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title> L5 Ex7: Delete user posts </title>
+	</head>
+
+	<body>
+		<h1>EECS 448 Lab 7 Delete Posts</h1>
+	  <form name="myForm" action="ViewUserPosts.php" method="post">    <!-- post method, different from get -->
+			<table border='1px solid black'>
+			<td>User ID:</td><td>Content:</td><td>Post ID:</td><td>Delete?</td>
+			<?php 
+			$servername = "mysql.eecs.ku.edu";
+			$dbusername = "e775s696";
+			$password = "ricueH9e";
+			$dbname = "e775s696";
+
+			// Create connection
+			$conn = new mysqli($servername, $dbusername, $password, $dbname);
+			
+			// Check connection
+			if ($conn->connect_error) {
+    			die("Connection failed: " . $conn->connect_error);
+				}
+			//Return all rows in Users table
+			$result = $conn->query("SELECT * FROM Posts");
+			//for loop to populate drop-down list
+			while($row = $result->fetch_assoc()){ 
+				$retrievedPostID = $row["post_ID"];
+				$retrievedcontent = $row["content"];
+				$retrievedUserID = $row["author_id"];
+			?>
+			<!-- creates a drop down list one user at a time until all returned users from SQL query are included -->
+			<tr><td><?php echo $retrievedUserID; ?></td><td><?php echo $retrievedcontent; ?></td><td><?php echo $retrievedPostID; ?></td><td><input type="checkbox" value="<?php echo $retrievedPostID; ?>"></td></tr>
+			<?php } 
+				$conn->close(); ?>
+			</table><br><br>
+      <input type="reset" value="Reset">
+      <input type="submit" value="Submit">
+      </form>
+
+	</body>
+</html>
