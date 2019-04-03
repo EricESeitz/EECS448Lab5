@@ -12,13 +12,13 @@ else
 {
   $N = count($postsToDelete);
 
-  echo("You selected $N post(s): ");
+  echo("You selected $N post(s) to be deleted:");
   for($i=0; $i < $N; $i++)
   {
-    echo($postsToDelete[$i] . " ");
+    echo("<br>" . $postsToDelete[$i]);
   }
-}
-/*
+
+
 //from EX2
 $servername = "mysql.eecs.ku.edu";
 $dbusername = "e775s696";
@@ -34,31 +34,21 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 // echo "Connected successfully";
+//loop through array of post ID's passed in from HTML
+for($j=0; $j < $N; $j++)
+{
+  //sql query to delete
+  $sql = "DELETE FROM Posts WHERE post_ID='$postsToDelete[$j]'";
 
-//Return all rows in Users table
-$result = $conn->query("SELECT * FROM Posts WHERE author_id = '$username'");
-//Create table
-echo "<h1> All Posts for user: " . $username . "</h1>";
-echo "<table border='1px solid black'>";
-echo "<td>Post ID:</td><td>Content:</td>"; 	//create initial header row
+  if ($conn->query($sql) === TRUE) {
+    echo "<br>Post ID: " . $postsToDelete[$j] . " deleted successfully";
+    } else {
+    echo "Error: Post ID: " . $postsToDelete[$j] . " not deleted. Reason: " . mysqli_error($con);
+  }
+}//end of loop to delete selected posts
 
-//from https://www.w3schools.com/php/php_mysql_select.asp
-//while loop of users
-while($row = $result->fetch_assoc()) {
-    echo "<tr><td>" . $row["post_ID"] . "</td><td>" . $row["content"] . "</td></tr>"; 	//create initial header row
-    //echo "User_ID: " . $row["User_ID"] . "<br>";
-}
-echo "</table>";		//end of table
-
-echo "<br><br><button onclick='goBack()'>Go Back</button> 
-<script>
-function goBack() {
-  window.history.back();
-}
-</script>";
 
 $conn->close();
-
-*/
+}//end of initial if-else statement checking for empty boxes
 
 ?>
