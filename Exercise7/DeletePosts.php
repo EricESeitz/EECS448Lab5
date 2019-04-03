@@ -2,8 +2,23 @@
 
 //https://people.eecs.ku.edu/~e775s696/Lab05/Exercise5/ViewUsers.php
 
-$username = $_POST['userList'];  //number of user-defined item 1
+$postsToDelete = $_POST['postSelection'];  //number of user-defined item 1
 
+if(empty($postsToDelete)) 
+{
+  echo("You didn't select any posts.");
+} 
+else 
+{
+  $N = count($postsToDelete);
+
+  echo("You selected $N post(s): ");
+  for($i=0; $i < $N; $i++)
+  {
+    echo($postsToDelete[$i] . " ");
+  }
+}
+/*
 //from EX2
 $servername = "mysql.eecs.ku.edu";
 $dbusername = "e775s696";
@@ -43,4 +58,7 @@ function goBack() {
 </script>";
 
 $conn->close();
+
+*/
+
 ?>
