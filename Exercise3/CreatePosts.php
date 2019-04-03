@@ -24,9 +24,14 @@ if ($conn->connect_error) {
 }
 //echo "Connected successfully";
 
+//Escape string post to keep from breaking things
+$sanitizedPost = $conn->real_escape_string($post);
+//Escape string username to keep from breaking things
+$sanitizedUsername = $conn->real_escape_string($username);
+
 //check if username present
 //Query if username present in Users table
-$usernameResult = $conn->query("SELECT user_ID FROM Users WHERE user_ID='$username'");
+$usernameResult = $conn->query("SELECT user_ID FROM Users WHERE user_ID='$sanitizedUsername'");
 //Stores the number of rows returned in $usernameResult
 $usernameNumofRows = mysqli_num_rows($usernameResult);
 //echo "usernameNumofRows: " . $usernameNumofRows . "<br>";
@@ -52,11 +57,12 @@ $numRows = mysqli_num_rows($result);
 //Get length of post
 $postLength = strlen($post);
 //Combine
-$post_ID = $username . $numRows . $postLength;
+$post_ID = $sanitizedUsername . $numRows . $postLength;
 
 //echo "post_ID: " . $post_ID . "<br>";
+
 //sql to insert into posts
-$sql = "INSERT INTO Posts (post_ID, content, author_ID) VALUES ('$post_ID', '$post', '$username')";
+$sql = "INSERT INTO Posts (post_ID, content, author_ID) VALUES ('$post_ID', '$sanitizedPost', '$sanitizedUsername')";
 if ($conn->query($sql) === TRUE) {
     echo "New post created successfully. You may go back to make another post.";
 }else{

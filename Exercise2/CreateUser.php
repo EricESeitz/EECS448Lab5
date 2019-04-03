@@ -16,8 +16,13 @@ if ($conn->connect_error) {
 }
 //echo "Connected successfully";
 
+
+//Escape string username to keep from breaking things
+$sanitizedUsername = $conn->real_escape_string($Newusername);
+
+
 //below needs editing
-$sql = "INSERT INTO Users (user_ID) VALUES ('$Newusername')";
+$sql = "INSERT INTO Users (user_ID) VALUES ('$sanitizedUsername')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
