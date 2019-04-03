@@ -1,5 +1,7 @@
 <?php
 
+//https://people.eecs.ku.edu/~e775s696/Lab05/Exercise5/ViewUsers.php
+
 //from EX2
 $servername = "mysql.eecs.ku.edu";
 $dbusername = "e775s696";
