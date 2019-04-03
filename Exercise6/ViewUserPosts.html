@@ -5,7 +5,7 @@
 
 	<body>
 		<h1>EECS 448 Lab 5 Create Post</h1>
-      <form name="myForm" action="ViewUserPosts.php" onsubmit="return validateForm()" method="post">    <!-- post method, different from get -->
+      <form name="myForm" action="ViewUserPosts.php" method="post">    <!-- post method, different from get -->
 		<select name = "userList" id = "userList">
 			//SQL injection with PHP. Connects to server, querries user table, does a while loop to display all users
 			<?php 
@@ -34,15 +34,6 @@
       <input type="reset" value="Reset">
       <input type="submit" value="Submit">
       </form>
-
-		<script>
-		function validateForm()
-		{
-			let userSelection = document.getElementById("userList").value;
-			alert("You selected: " + userSelection);
-		return true;
-		}
-		</script>
 
 	</body>
 </html>
