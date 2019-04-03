@@ -15,7 +15,7 @@ $conn = new mysqli($servername, $dbusername, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-//echo "Connected successfully";
+// echo "Connected successfully";
 
 //Return all rows in Users table
 $result = $conn->query("SELECT * FROM Users");
