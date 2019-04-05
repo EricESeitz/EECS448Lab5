@@ -2,9 +2,6 @@
 $username = $_POST["username"];  //number of user-defined item 1
 $post = $_POST["post"];  //number of user-defined item 1
 
-//include css sheet in backend html
-//echo "<link rel='stylesheet' href='style.css' />";
-
 echo "<h1>Thank you for your post!</h1>";
 echo "Username: " . $username . "<br>";
 echo "Post: " . $post . "<br><br>";
@@ -22,7 +19,6 @@ $conn = new mysqli($servername, $dbusername, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-//echo "Connected successfully";
 
 //Escape string post to keep from breaking things
 $sanitizedPost = $conn->real_escape_string($post);
@@ -34,7 +30,6 @@ $sanitizedUsername = $conn->real_escape_string($username);
 $usernameResult = $conn->query("SELECT user_ID FROM Users WHERE user_ID='$sanitizedUsername'");
 //Stores the number of rows returned in $usernameResult
 $usernameNumofRows = mysqli_num_rows($usernameResult);
-//echo "usernameNumofRows: " . $usernameNumofRows . "<br>";
 //If no rows returned, username not in Users. Quit.
 if ($usernameNumofRows < 1) {
     echo "Error: User ID not found!";
@@ -53,13 +48,10 @@ function goBack() {
 $result = $conn->query("SELECT * FROM Posts");
 //Returns the number of rows in $result
 $numRows = mysqli_num_rows($result);
-//echo "num of rows: " . $numRows . "<br>";
 //Get length of post
 $postLength = strlen($post);
 //Combine
 $post_ID = $sanitizedUsername . $numRows . $postLength;
-
-//echo "post_ID: " . $post_ID . "<br>";
 
 //sql to insert into posts
 $sql = "INSERT INTO Posts (post_ID, content, author_ID) VALUES ('$post_ID', '$sanitizedPost', '$sanitizedUsername')";

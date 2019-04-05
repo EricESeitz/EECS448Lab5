@@ -33,7 +33,6 @@ $conn = new mysqli($servername, $dbusername, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-// echo "Connected successfully";
 //loop through array of post ID's passed in from HTML
 for($j=0; $j < $N; $j++)
 {

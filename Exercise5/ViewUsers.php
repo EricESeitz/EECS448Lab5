@@ -15,7 +15,6 @@ $conn = new mysqli($servername, $dbusername, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-// echo "Connected successfully";
 
 //Return all rows in Users table
 $result = $conn->query("SELECT * FROM Users");
@@ -28,7 +27,6 @@ echo "<td>User ID:</td>"; 	//create initial header row
 //while loop of users
 while($row = $result->fetch_assoc()) {
     echo "<tr><td>" . $row["User_ID"] . "</td></tr>"; 	//create initial header row
-    //echo "User_ID: " . $row["User_ID"] . "<br>";
 }
 echo "</table>";		//end of table
 
